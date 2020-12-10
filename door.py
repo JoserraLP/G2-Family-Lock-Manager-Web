@@ -76,7 +76,12 @@ def remove_door(request):
         # Get data from request
         data = request.form.to_dict()
 
-        r = requests.delete(URL+'/'+data['door_id'])
+        results = requests.get(URL).json() ['doors']
+
+        door = [door for door in results if door['name'] == data['name']][0]
+
+        if (door):
+            r = requests.delete(URL+'/'+str(door['id']))
 
         return redirect(url_for('main.index'))
     except requests.exceptions.RequestException as e:   
