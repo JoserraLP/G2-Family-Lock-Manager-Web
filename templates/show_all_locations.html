@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <div class="notification is-danger">
+          {{ messages[0] }}
+      </div>
+  {% else %}
+    <h1>All user locations</h1>
+    {% if results %}
+        {% for item in results %}
+          <div class="bg-light-green mt-3 mb-3 ml-5 mr-5 p-2">
+              <div class="pt-3 text-center"><b>Location:</b>{{ item['name']}}</div>
+          </div>
+        {% endfor %}
+    {% else %}
+      <p class="pt-5 mt-5"> User location cannot be loaded, please refresh the page</p>
+    {% endif %}
+  {% endif %}
+  {% endwith %}
+
+{% endblock %}

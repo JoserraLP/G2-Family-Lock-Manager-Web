@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Family Lock Manager</title>
+    
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    {% block header_bokeh %}
+    {% endblock %}
+</head>
+
+<body>
+    <section>
+
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item ml-4 active">
+                            <a href="{{ url_for('main.index') }}" class="nav-link text-white">Home</a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item ml-4 active">
+                            <a href="{{ url_for('main.profile') }}" class="nav-link text-white">Profile</a>
+                        </li>
+                        <li class="nav-item  ml-4 dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLegitimatePerson" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                LegitimatePerson
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownLegitimatePerson">
+                                <a class="dropdown-item" href="{{ url_for('legitimate_person.get_legitimate_person') }}" class="nav-link text-white">Get all legitimate person</a>
+                                <a class="dropdown-item" href="{{ url_for('legitimate_person.add_legitimate_person') }}" class="nav-link text-white">Add a legitimate person</a>
+                                <a class="dropdown-item" href="{{ url_for('legitimate_person.delete_legitimate_person') }}" class="nav-link text-white">Delete a legitimate person</a>
+                                <a class="dropdown-item" href="{{ url_for('legitimate_person.update_legitimate_person') }}" class="nav-link text-white">Update a legitimate person</a>
+                            </div>
+                        </li>
+                        <li class="nav-item ml-4 active">
+                            <a href="{{ url_for('historic.show_historic') }}" class="nav-link text-white">Show historic</a>
+                        </li>
+                        <li class="nav-item  ml-4 dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDoor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Door
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownDoor">
+                                <a class="dropdown-item" href="{{ url_for('door.get_door') }}" class="nav-link text-white">Get all doors</a>
+                                <a class="dropdown-item" href="{{ url_for('door.add_door') }}" class="nav-link text-white">Add a door</a>
+                                <a class="dropdown-item" href="{{ url_for('door.delete_door') }}" class="nav-link text-white">Delete a door</a>
+                                <a class="dropdown-item" href="{{ url_for('door.update_door') }}" class="nav-link text-white">Update a door</a>
+                            </div>
+                        </li>
+                        <li class="nav-item  ml-4 dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLocation" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Location
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownLocation">
+                                <a class="dropdown-item" href="{{ url_for('location.get_all_locations') }}" class="nav-link text-white">Get all locations of the user</a>
+                                <a class="dropdown-item" href="{{ url_for('location.get_location') }}" class="nav-link text-white">Get last known location</a>
+                                <a class="dropdown-item" href="{{ url_for('location.add_location') }}" class="nav-link text-white">Add a new user location</a>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <ul class="navbar-nav ml-auto mt-2 mr-4 mt-lg-0">
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item mr-4 active">
+                            <a href="{{ url_for('auth.logout') }}" class="nav-link text-white">Logout</a>
+                        </li>
+                        {% endif %}
+                        {% if not current_user.is_authenticated %}
+                        <li class="nav-item mr-4 active">
+                            <a href="{{ url_for('auth.login') }}" class="nav-link">Login</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container-fluid text-center mb-5 pb-5">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid text-center">
+                <div class="d-flex justify-content-center bg-dark row pt-4 pb-4">
+                    <div class="col text-white ml-4 mr-4">G2 Family Lock</div>
+                </div>
+            </div>
+        </footer>
+    </section>
+</body>
+
+</html>
