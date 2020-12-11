@@ -49,7 +49,7 @@ def create_app():
     app.register_blueprint(location_blueprint)
 
     # Import models to create the tables
-    from .models import User
+    from .models import User, Role
 
     # Init the Flask-User Manager service 
     user_manager = UserManager(app, db, User)
@@ -61,7 +61,7 @@ def create_app():
     with app.app_context():
         db.create_all()
         # If there are no users and no roles create and insert them on the db
-        if not User.query.limit(1).all():
+        if not User.query.limit(1).all() and not Role.query.limit(1).all():
             from .utils.insert_data_to_db import insert_user_data
             insert_user_data(db)
 

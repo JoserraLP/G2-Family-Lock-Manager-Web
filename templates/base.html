@@ -43,9 +43,11 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownLegitimatePerson">
                                 <a class="dropdown-item" href="{{ url_for('legitimate_person.get_legitimate_person') }}" class="nav-link text-white">Get all legitimate person</a>
+                                {% if current_user.has_roles(['admin']) %}
                                 <a class="dropdown-item" href="{{ url_for('legitimate_person.add_legitimate_person') }}" class="nav-link text-white">Add a legitimate person</a>
                                 <a class="dropdown-item" href="{{ url_for('legitimate_person.delete_legitimate_person') }}" class="nav-link text-white">Delete a legitimate person</a>
                                 <a class="dropdown-item" href="{{ url_for('legitimate_person.update_legitimate_person') }}" class="nav-link text-white">Update a legitimate person</a>
+                                {% endif %}
                             </div>
                         </li>
                         <li class="nav-item ml-4 active">
@@ -57,9 +59,11 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownDoor">
                                 <a class="dropdown-item" href="{{ url_for('door.get_door') }}" class="nav-link text-white">Get all doors</a>
+                                {% if current_user.has_roles(['admin']) %}
                                 <a class="dropdown-item" href="{{ url_for('door.add_door') }}" class="nav-link text-white">Add a door</a>
                                 <a class="dropdown-item" href="{{ url_for('door.delete_door') }}" class="nav-link text-white">Delete a door</a>
                                 <a class="dropdown-item" href="{{ url_for('door.update_door') }}" class="nav-link text-white">Update a door</a>
+                                {% endif %}
                             </div>
                         </li>
                         <li class="nav-item  ml-4 dropdown active">

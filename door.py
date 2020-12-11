@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required
+from flask_user import roles_required
 
 import json
 import requests
@@ -33,7 +34,7 @@ def create_door(request):
         raise SystemExit(e)
 
 @door.route('/add_door', methods=['GET', 'POST'])
-@login_required
+@roles_required(['admin'])
 def add_door():
     ''' Add a door to the system or show the form 
 
@@ -88,7 +89,7 @@ def remove_door(request):
         raise SystemExit(e)
 
 @door.route('/delete_door', methods=['GET', 'POST'])
-@login_required
+@roles_required(['admin'])
 def delete_door():
     ''' Delete a door to the system or show the form 
 
@@ -125,7 +126,7 @@ def update_value_door(request):
         raise SystemExit(e)
 
 @door.route('/update_door', methods=['GET', 'POST'])
-@login_required
+@roles_required(['admin'])
 def update_door():
     ''' Update a door to the system or show the form 
 

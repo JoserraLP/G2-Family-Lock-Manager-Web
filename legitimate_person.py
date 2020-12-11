@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required
+from flask_user import roles_required
 
 import json
 import requests
@@ -35,7 +36,7 @@ def create_legitimate_person(request):
         raise SystemExit(e)
 
 @legitimate_person.route('/add_legitimate_person', methods=['GET', 'POST'])
-@login_required
+@roles_required(['admin'])
 def add_legitimate_person():
     ''' Add a legitimate person to the system or show the form 
 
@@ -85,7 +86,7 @@ def remove_legitimate_person(request):
         raise SystemExit(e)
 
 @legitimate_person.route('/delete_legitimate_person', methods=['GET', 'POST'])
-@login_required
+@roles_required(['admin'])
 def delete_legitimate_person():
     ''' Delete a legitimate person to the system or show the form 
 
@@ -122,7 +123,7 @@ def update_value_legitimate_person(request):
         raise SystemExit(e)
 
 @legitimate_person.route('/update_legitimate_person', methods=['GET', 'POST'])
-@login_required
+@roles_required(['admin'])
 def update_legitimate_person():
     ''' Update a legitimate person to the system or show the form 
 
