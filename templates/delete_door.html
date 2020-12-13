@@ -2,16 +2,17 @@
 
 {% block content %}
 <div class="p-2 mt-5">
-    <h1>Delete door</h1>
+    <h1>Delete a door</h1>
 </div>
+<hr>
 <div class="container mt-5">
     <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 mx-auto text-center form">
         <form action="{{url_for('door.delete_door')}}" method="POST" class="justify-content-center">
             <div class="form-group row">
                 <label class="col-4 text-left mt-1" for="name">Door Name:</label>
-                <input class="col-8 text-left" type="text" id="name" name="name" required>
+                <input class="col-8 text-left" type="text" id="name" name="name" placeholder="Main door" required>
             </div>
-            <input class="mt-2 btn btn-dark" type="submit" value="Send">
+            <input class="mt-2 btn btn-dark" type="submit" value="Delete">
         </form>
     </div>
 </div>

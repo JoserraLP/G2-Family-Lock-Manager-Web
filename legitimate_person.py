@@ -24,8 +24,8 @@ def create_legitimate_person(request):
     try: 
         # Get data from request
         data = request.form.to_dict()
-        
-        data ['notification'] = True if data['notification'] == 'true' else False
+
+        data ['notification'] = True if 'notification' in data and data['notification'] == 'true' else False
 
         headers={'Content-type':'application/json', 'Accept':'application/json'}
  

@@ -2,22 +2,32 @@
 
 {% block content %}
 <div class="p-2 mt-5">
-    <h1>Update door</h1>
+    <h1>Update a door</h1>
 </div>
+<hr>
 <div class="container mt-5">
     <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 mx-auto text-center form">
         <form action="{{url_for('door.update_door')}}" method="POST" class="justify-content-center">
 
             <div class="form-group row">
                 <label class="col-4 text-left mt-1" for="name">Door name:</label>
-                <input class="col-8 text-left" type="text" id="name" name="name" required>
+                <input class="col-8 text-left" type="text" id="name" name="name" placeholder="Main door" required>
             </div>
 
             <div class="form-group row">
-                <label class="col-4 text-left mt-1" for="state">New status:</label>
-                <input class="col-8 text-left" type="text" id="state" name="state" required>
+                <label class="col-8 text-left mt-1">New door state:</label>
             </div>
-            <input class="mt-2 btn btn-dark" type="submit" value="Send">
+            
+            <div class="form-group form-check row">
+                <input class="text-left form-check-input" type="radio" id="state_open" name="state" value="open">
+                <label class="col-8 text-left form-check-label" for="state_open">Open</label>
+            </div>
+            <div class="form-group form-check row">
+                <input class="text-left form-check-input" type="radio" id="state_close" name="state" value="close">
+                <label class="col-8 text-left form-check-label" for="state_close">Close</label>
+            </div>
+
+            <input class="mt-2 btn btn-dark" type="submit" value="Update">
         </form>
     </div>
 </div>

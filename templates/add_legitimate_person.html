@@ -2,32 +2,45 @@
 
 {% block content %}
 <div class="p-2 mt-5">
-    <h1>Add legitimate person</h1>
+    <h1>Add a legitimate person</h1>
 </div>
+<hr>
 <div class="container mt-5">
     <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 mx-auto text-center form">
         <form action="{{url_for('legitimate_person.add_legitimate_person')}}" method="POST" class="justify-content-center">
             <div class="form-group row">
                 <label class="col-4 text-left mt-1" for="person_name">Name:</label>
-                <input class="col-8 text-left" type="text" id="person_name" name="person_name" required>
+                <input class="col-8 text-left" type="text" id="person_name" name="person_name" placeholder="Antonio" required>
             </div>
             <div class="form-group row">
                 <label class="col-4 text-left mt-1" for="person_MAC">Person MAC:</label>
-                <input class="col-8 text-left" type="text" id="person_MAC" name="person_MAC" required>
+                <input class="col-8 text-left" type="text" id="person_MAC" name="person_MAC" placeholder="00:00:00:00:00:00" required>
             </div>
             <div class="form-group row">
                 <label class="col-4 text-left mt-1" for="person_phone_number">Person phone number:</label>
-                <input class="col-8 text-left" id="person_phone_number"  name="person_phone_number" required>
+                <input class="col-8 text-left" id="person_phone_number" name="person_phone_number" placeholder="615456545" required>
+            </div>
+            <div class="form-group form-check row">
+                <input class="form-check-input" type="checkbox" id="notification" name="notification" value="true" checked>
+                <label class="text-left form-check-label" for="notification">Notification</label>
             </div>
             <div class="form-group row">
-                <label class="col-4 text-left mt-1" for="notification">Notification:</label>
-                <input class="col-8 text-left" type="text" id="notification" name="notification" required>
+                <label class="col-8 text-left mt-1">Relation to user:</label>
             </div>
-            <div class="form-group row">
-                <label class="col-4 text-left mt-1" for="relation">Relation to user:</label>
-                <input class="col-8 text-left" type="text" id="relation" name="relation">
+            
+            <div class="form-group form-check row">
+                <input class="text-left form-check-input" type="radio" id="relation_close" name="relation" value="close">
+                <label class="col-8 text-left form-check-label" for="relation_close">Close</label>
             </div>
-            <input class="mt-2 btn btn-dark" type="submit" value="Send">
+            <div class="form-group form-check row">
+                <input class="text-left form-check-input" type="radio" id="relation_medium" name="relation" value="medium">
+                <label class="col-8 text-left form-check-label" for="relation_medium">Medium</label>
+            </div>
+            <div class="form-group form-check row">
+                <input class="text-left form-check-input" type="radio" id="relation_unknown" name="relation" value="">
+                <label class="col-8 text-left form-check-label" for="relation_unknown">Unknown</label>
+            </div>
+            <input class="mt-2 btn btn-dark" type="submit" value="Add">
         </form>
     </div>
 </div>

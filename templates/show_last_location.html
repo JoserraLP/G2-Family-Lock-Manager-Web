@@ -7,11 +7,14 @@
           {{ messages[0] }}
       </div>
   {% else %}
+  <div class="p-2 mt-5">
     <h1>Last known user location</h1>
+  </div>
+  <hr>
     {% if result %}
         <div class="row">
             <div class="col bg-light-green mt-3 mb-3 ml-5 mr-5 p-2">
-                <div class="pt-3 text-center">{{ result['location']}}</div>
+                <div class="pt-3 pb-3 text-center">The user is currently at: <b>{{ result['location']}}</b></div>
             </div>
         </div>
     {% else %}

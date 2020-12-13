@@ -7,11 +7,14 @@
           {{ messages[0] }}
       </div>
   {% else %}
+  <div class="p-2 mt-5">
     <h1>All user locations</h1>
+  </div>
+  <hr>
     {% if results %}
         {% for item in results %}
           <div class="bg-light-green mt-3 mb-3 ml-5 mr-5 p-2">
-              <div class="pt-3 text-center"><b>Location:</b>{{ item['name']}}</div>
+              <div class="text-center"><b>Location:</b> {{ item['name']}}</div>
           </div>
         {% endfor %}
     {% else %}
